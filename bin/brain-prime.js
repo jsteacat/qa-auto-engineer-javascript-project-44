@@ -2,6 +2,7 @@
 
 import {
     checkAnswer,
+    congratulations,
     createNumber,
     getName,
     greeting,
@@ -16,7 +17,7 @@ const goPrime = () => {
     const number = createNumber()
     console.log(`Question: ${number}`)
     const correctAnswer = isPrime(number) ? 'yes' : 'no'
-    checkAnswer(correctAnswer, name)
+    if (checkAnswer(correctAnswer, name)) congratulations(name)
     goPrime()
 }
 
