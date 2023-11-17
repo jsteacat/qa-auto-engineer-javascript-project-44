@@ -17,7 +17,8 @@ const goPrime = () => {
     const number = createNumber()
     console.log(`Question: ${number}`)
     const correctAnswer = isPrime(number) ? 'yes' : 'no'
-    if (checkAnswer(correctAnswer, name)) congratulations(name)
+    if (!checkAnswer(correctAnswer, name)) return false
+    congratulations(name)
     goPrime()
 }
 
