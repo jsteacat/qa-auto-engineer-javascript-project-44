@@ -1,42 +1,53 @@
 #!/usr/bin/env node
 import readlineSync from 'readline-sync'
-import { wrongAnswer } from '../src/index.js'
+import {
+    ATTEMPTS,
+    congratulations,
+    createNumbers,
+    getName,
+    greeting, rightAnswer,
+    wrongAnswer
+} from '../src/index.js'
 
-console.log('Welcome to the Brain Games!')
+const getOperationType = () => {
+    const operations = ['+', '-', '*']
+    const randomIndex = Math.floor(Math.random() * (2 + 1))
+    return operations[randomIndex]
+}
 
 const goCalc = () => {
-    const name = readlineSync.question('May I have your name? ')
-    console.log(`Hello, ${name}!`)
+    greeting()
+    const name = getName()
     console.log('What is the result of the expression?')
+    for(let i = 0; i < ATTEMPTS; i++) {
+        const numbers = createNumbers(2)
+        const operationType = getOperationType()
+        let correctAnswer = ''
+        switch(operationType) {
+            case '+':
+                console.log(`Question: ${numbers[0]} + ${numbers[1]}`)
+                correctAnswer = `${numbers[0] + numbers[1]}`
+                break
+            case '-':
+                console.log(`Question: ${numbers[0]} - ${numbers[1]}`)
+                correctAnswer = `${numbers[0] - numbers[1]}`
+                break
+            case '*':
+                console.log(`Question: ${numbers[0]} * ${numbers[1]}`)
+                correctAnswer = `${numbers[0] * numbers[1]}`
+                break
+        }
 
-    console.log('Question: 4 + 10')
-    const answer1 = readlineSync.question('Your answer: ')
-    if (answer1 === '14') {
-        console.log('Correct!')
-    } else {
-        wrongAnswer(answer1, name, '14')
-        return
+        const answer = readlineSync.question('Your answer: ')
+        if (answer === correctAnswer) {
+            rightAnswer()
+        } else {
+            wrongAnswer(answer, name, correctAnswer)
+            return false
+        }
     }
 
-    console.log('Question: 25 - 11')
-    const answer2 = readlineSync.question('Your answer: ')
-    if (answer2 === '14') {
-        console.log('Correct!')
-    } else {
-        wrongAnswer(answer2, name, '14')
-        return
-    }
-
-    console.log('Question: 25 * 7')
-    const answer3 = readlineSync.question('Your answer: ')
-    if (answer3 === '175') {
-        console.log('Correct!')
-    } else {
-        wrongAnswer(answer3, name, '175')
-        return
-    }
-
-    console.log(`Congratulations, ${name}!`)
+    congratulations(name)
 }
 
 goCalc()

@@ -1,42 +1,34 @@
 #!/usr/bin/env node
 import readlineSync from 'readline-sync'
-import { wrongAnswer } from '../src/index.js'
-
-console.log('Welcome to the Brain Games!')
+import {
+    ATTEMPTS,
+    congratulations,
+    createNumbers,
+    getName,
+    greeting,
+    isEven,
+    rightAnswer,
+    wrongAnswer
+} from '../src/index.js'
 
 const goEven = () => {
-    const name = readlineSync.question('May I have your name? ')
-    console.log(`Hello, ${name}!`)
+    greeting()
+    const name = getName()
     console.log('Answer "yes" if the number is even, otherwise answer "no".')
-
-    console.log('Question: 15')
-    const answer1 = readlineSync.question('Your answer: ')
-    if (answer1 === 'no') {
-        console.log('Correct!')
-    } else {
-        wrongAnswer(answer1, name, 'no')
-        return
+    const numbers = createNumbers(ATTEMPTS)
+    for(let i = 0; i < numbers.length; i++) {
+        console.log(`Question: ${numbers[i]}`)
+        const correctAnswer = isEven(numbers[i]) ? 'yes' : 'no'
+        const answer = readlineSync.question('Your answer: ')
+        if (answer === correctAnswer) {
+            rightAnswer()
+        } else {
+            wrongAnswer(answer, name, correctAnswer)
+            return false
+        }
     }
 
-    console.log('Question: 6')
-    const answer2 = readlineSync.question('Your answer: ')
-    if (answer2 === 'yes') {
-        console.log('Correct!')
-    } else {
-        wrongAnswer(answer2, name, 'yes')
-        return
-    }
-
-    console.log('Question: 7')
-    const answer3 = readlineSync.question('Your answer: ')
-    if (answer3 === 'no') {
-        console.log('Correct!')
-    } else {
-        wrongAnswer(answer3, name, 'no')
-        return
-    }
-
-    console.log(`Congratulations, ${name}!`)
+    congratulations(name)
 }
 
 goEven()
