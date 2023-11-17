@@ -1,6 +1,12 @@
 #!/usr/bin/env node
 
-import {ATTEMPTS, checkAnswer, congratulations, getName, greeting} from "../src/index.js";
+import {
+    ATTEMPTS,
+    checkAnswer,
+    congratulations,
+    getName,
+    greeting
+} from '../src/index.js'
 
 const getProgression = (length) => {
     const progression = []
