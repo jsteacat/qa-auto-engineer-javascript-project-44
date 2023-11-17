@@ -6,20 +6,20 @@ import {
   createNumbers,
   GCD2,
   getName,
-  greeting
+  greeting,
 } from '../src/index.js';
 
 const goGCD = () => {
   greeting();
   const name = getName();
   console.log('Find the greatest common divisor of given numbers.');
-  for(let i = 0; i < ATTEMPTS; i++) {
+  for (let i = 0; i < ATTEMPTS; i + 1) {
     const numbers = createNumbers(2);
-    let correctAnswer = `${GCD2(numbers[0], numbers[1])}`;
+    const correctAnswer = `${GCD2(numbers[0], numbers[1])}`;
     console.log(`Question: ${numbers[0]} ${numbers[1]}`);
-    if (!checkAnswer(correctAnswer, name)) return false;
+    if (!checkAnswer(correctAnswer, name)) return;
   }
   congratulations(name);
-}
+};
 
 goGCD();

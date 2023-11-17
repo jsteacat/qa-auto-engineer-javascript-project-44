@@ -6,7 +6,7 @@ import {
   createNumber,
   getName,
   greeting,
-  isPrime
+  isPrime,
 } from '../src/index.js';
 
 greeting();
@@ -17,9 +17,9 @@ const goPrime = () => {
   const number = createNumber();
   console.log(`Question: ${number}`);
   const correctAnswer = isPrime(number) ? 'yes' : 'no';
-  if (!checkAnswer(correctAnswer, name)) return false;
+  if (!checkAnswer(correctAnswer, name)) return;
   congratulations(name);
   goPrime();
-}
+};
 
 goPrime();
