@@ -44,3 +44,9 @@ export const createNumbers = (length) => {
 export const isEven = (num) => {
     return num % 2 === 0
 }
+
+export const GCD2 = (num1, num2) => {
+    if (num2 > num1) return GCD2(num2, num1);
+    if (!num2) return num1;
+    return GCD2(num2, num1 % num2);
+}
