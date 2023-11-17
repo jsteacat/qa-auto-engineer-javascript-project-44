@@ -10,7 +10,7 @@ import {
 
 const getOperationType = () => {
     const operations = ['+', '-', '*']
-    const randomIndex = Math.floor(Math.random() * (2 + 1))
+    const randomIndex = Math.floor(Math.random() * 3)
     return operations[randomIndex]
 }
 
