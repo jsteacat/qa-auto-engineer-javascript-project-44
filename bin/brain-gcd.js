@@ -4,8 +4,7 @@ import {
     ATTEMPTS,
     congratulations, createNumbers,
     getName,
-    greeting,
-    wrongAnswer
+    greeting
 } from '../src/index.js'
 
 const goGCD = () => {
