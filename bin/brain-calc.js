@@ -1,12 +1,11 @@
 #!/usr/bin/env node
-import readlineSync from 'readline-sync'
 import {
     ATTEMPTS,
+    checkAnswer,
     congratulations,
     createNumbers,
     getName,
-    greeting, rightAnswer,
-    wrongAnswer
+    greeting
 } from '../src/index.js'
 
 const getOperationType = () => {
@@ -38,13 +37,7 @@ const goCalc = () => {
                 break
         }
 
-        const answer = readlineSync.question('Your answer: ')
-        if (answer === correctAnswer) {
-            rightAnswer()
-        } else {
-            wrongAnswer(answer, name, correctAnswer)
-            return false
-        }
+        if (!checkAnswer(correctAnswer, name)) return false
     }
 
     congratulations(name)

@@ -6,17 +6,25 @@ export const greeting = () => console.log('Welcome to the Brain Games!')
 
 export const congratulations = (name) => console.log(`Congratulations, ${name}!`)
 
-export const rightAnswer = () => console.log('Correct!')
-
 export const getName = () => {
     const name = readlineSync.question('May I have your name? ')
     console.log(`Hello, ${name}!`)
     return name
 }
 
-export const wrongAnswer = (answer, name, correct) => {
+const wrongAnswer = (answer, name, correct) => {
     console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correct}'.`)
     console.log(`Let's try again, ${name}!`)
+}
+
+export const checkAnswer = (correctAnswer, name) => {
+    const answer = readlineSync.question('Your answer: ')
+    if (answer === correctAnswer) {
+        console.log('Correct!')
+    } else {
+        wrongAnswer(answer, name, correctAnswer)
+    }
+    return answer === correctAnswer
 }
 
 export const createNumber = () => {

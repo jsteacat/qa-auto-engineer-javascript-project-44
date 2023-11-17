@@ -1,14 +1,12 @@
 #!/usr/bin/env node
-import readlineSync from 'readline-sync'
 import {
     ATTEMPTS,
+    checkAnswer,
     congratulations,
     createNumbers,
     getName,
     greeting,
-    isEven,
-    rightAnswer,
-    wrongAnswer
+    isEven
 } from '../src/index.js'
 
 const goEven = () => {
@@ -19,13 +17,7 @@ const goEven = () => {
     for(let i = 0; i < numbers.length; i++) {
         console.log(`Question: ${numbers[i]}`)
         const correctAnswer = isEven(numbers[i]) ? 'yes' : 'no'
-        const answer = readlineSync.question('Your answer: ')
-        if (answer === correctAnswer) {
-            rightAnswer()
-        } else {
-            wrongAnswer(answer, name, correctAnswer)
-            return false
-        }
+        if (!checkAnswer(correctAnswer, name)) return false
     }
 
     congratulations(name)
