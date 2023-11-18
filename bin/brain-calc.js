@@ -18,7 +18,7 @@ const goCalc = () => {
   greeting();
   const name = getName();
   console.log('What is the result of the expression?');
-  for (let i = 0; i < ATTEMPTS; i + 1) {
+  for (let i = 0; i < ATTEMPTS; i += 1) {
     const numbers = createNumbers(2);
     const operationType = getOperationType();
     let correctAnswer = '';

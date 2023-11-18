@@ -32,7 +32,7 @@ export const createNumber = () => Math.floor(Math.random() * 100) + 1;
 export const createNumbers = (length) => {
   const numbers = [];
 
-  for (let i = 0; i < length; i + 1) {
+  for (let i = 0; i < length; i += 1) {
     numbers.push(createNumber());
   }
 
@@ -43,7 +43,7 @@ export const isEven = (num) => num % 2 === 0;
 
 export const isPrime = (num) => {
   const sqrt = Math.sqrt(num);
-  for (let i = 2; i <= sqrt; i + 1) {
+  for (let i = 2; i <= sqrt; i += 1) {
     if (num % i === 0) return false;
   }
   return num > 1;

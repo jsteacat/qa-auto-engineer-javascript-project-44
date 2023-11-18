@@ -11,7 +11,7 @@ import {
 const getProgression = (length) => {
   const progression = [];
   const randomInteger = Math.floor(Math.random() * 10) + 2;
-  for (let i = 1; i <= length; i + 1) {
+  for (let i = 1; i <= length; i += 1) {
     if (i === 1) {
       progression[i - 1] = i + randomInteger + randomInteger;
     } else {
@@ -26,7 +26,7 @@ const goProgression = () => {
   const name = getName();
   console.log('What number is missing in the progression?');
 
-  for (let i = 0; i < ATTEMPTS; i + 1) {
+  for (let i = 0; i < ATTEMPTS; i += 1) {
     const progression = getProgression(10);
     const randomIndex = Math.floor(Math.random() * 10);
     const correctAnswer = `${progression[randomIndex]}`;
