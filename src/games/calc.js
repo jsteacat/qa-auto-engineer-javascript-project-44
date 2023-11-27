@@ -1,0 +1,43 @@
+import {
+  ATTEMPTS,
+  checkAnswer,
+  congratulations,
+  createNumbers,
+  getName,
+  greeting,
+} from '../index.js';
+
+const getOperationType = () => {
+  const operations = ['+', '-', '*'];
+  const randomIndex = Math.floor(Math.random() * 3);
+  return operations[randomIndex];
+};
+
+export default () => {
+  greeting();
+  const name = getName();
+  console.log('What is the result of the expression?');
+  for (let i = 0; i < ATTEMPTS; i += 1) {
+    const numbers = createNumbers(2);
+    const operationType = getOperationType();
+    let correctAnswer = '';
+    switch (operationType) {
+      case '-':
+        console.log(`Question: ${numbers[0]} - ${numbers[1]}`);
+        correctAnswer = `${numbers[0] - numbers[1]}`;
+        break;
+      case '*':
+        console.log(`Question: ${numbers[0]} * ${numbers[1]}`);
+        correctAnswer = `${numbers[0] * numbers[1]}`;
+        break;
+      default:
+        console.log(`Question: ${numbers[0]} + ${numbers[1]}`);
+        correctAnswer = `${numbers[0] + numbers[1]}`;
+        break;
+    }
+
+    if (!checkAnswer(correctAnswer, name)) return;
+  }
+
+  congratulations(name);
+};
