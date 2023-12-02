@@ -1,22 +1,17 @@
+import gameEngine from '../engine.js';
 import {
-  ATTEMPTS,
-  checkAnswer,
-  congratulations,
   createNumber,
-  getName,
-  greeting,
   isPrime,
-} from '../index.js';
+} from '../utils.js';
+
+const getQuiz = () => {
+  const number = createNumber();
+  const question = `Question: ${number}`;
+  const correctAnswer = isPrime(number) ? 'yes' : 'no';
+
+  return { question, correctAnswer };
+};
 
 export default () => {
-  greeting();
-  const name = getName();
-  console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
-  for (let i = 0; i < ATTEMPTS; i += 1) {
-    const number = createNumber();
-    console.log(`Question: ${number}`);
-    const correctAnswer = isPrime(number) ? 'yes' : 'no';
-    if (!checkAnswer(correctAnswer, name)) return;
-    congratulations(name);
-  }
+  gameEngine('Answer "yes" if given number is prime. Otherwise answer "no".', getQuiz);
 };

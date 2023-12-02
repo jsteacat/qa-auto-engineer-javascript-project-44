@@ -1,43 +1,32 @@
-import {
-  ATTEMPTS,
-  checkAnswer,
-  congratulations,
-  createNumbers,
-  getName,
-  greeting,
-} from '../index.js';
+import gameEngine from '../engine.js';
+import { createNumbers } from '../utils.js';
 
-const getOperationType = () => {
+const getQuiz = () => {
+  const numbers = createNumbers(2);
   const operations = ['+', '-', '*'];
   const randomIndex = Math.floor(Math.random() * 3);
-  return operations[randomIndex];
+  const operationType = operations[randomIndex];
+
+  let question, correctAnswer;
+
+  switch (operationType) {
+    case '-':
+      question = `Question: ${numbers[0]} - ${numbers[1]}`;
+      correctAnswer = `${numbers[0] - numbers[1]}`;
+      break;
+    case '*':
+      question = `Question: ${numbers[0]} * ${numbers[1]}`;
+      correctAnswer = `${numbers[0] * numbers[1]}`;
+      break;
+    default:
+      question = `Question: ${numbers[0]} + ${numbers[1]}`;
+      correctAnswer = `${numbers[0] + numbers[1]}`;
+      break;
+  }
+
+  return { question, correctAnswer };
 };
 
 export default () => {
-  greeting();
-  const name = getName();
-  console.log('What is the result of the expression?');
-  for (let i = 0; i < ATTEMPTS; i += 1) {
-    const numbers = createNumbers(2);
-    const operationType = getOperationType();
-    let correctAnswer = '';
-    switch (operationType) {
-      case '-':
-        console.log(`Question: ${numbers[0]} - ${numbers[1]}`);
-        correctAnswer = `${numbers[0] - numbers[1]}`;
-        break;
-      case '*':
-        console.log(`Question: ${numbers[0]} * ${numbers[1]}`);
-        correctAnswer = `${numbers[0] * numbers[1]}`;
-        break;
-      default:
-        console.log(`Question: ${numbers[0]} + ${numbers[1]}`);
-        correctAnswer = `${numbers[0] + numbers[1]}`;
-        break;
-    }
-
-    if (!checkAnswer(correctAnswer, name)) return;
-  }
-
-  congratulations(name);
+  gameEngine('What is the result of the expression?', getQuiz);
 };
