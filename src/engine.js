@@ -1,5 +1,6 @@
 import readlineSync from 'readline-sync';
-import { ATTEMPTS } from './const.js';
+
+const ATTEMPTS = 3;
 
 const wrongAnswer = (answer, name, correct) => {
   console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correct}'.`);
@@ -17,7 +18,7 @@ export const checkAnswer = (correctAnswer, name) => {
 };
 
 export default (rule, getQuiz) => {
-  console.log('Welcome to the Brain Games!')
+  console.log('Welcome to the Brain Games!');
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
   console.log(rule);

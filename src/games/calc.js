@@ -7,7 +7,8 @@ const getQuiz = () => {
   const randomIndex = Math.floor(Math.random() * 3);
   const operationType = operations[randomIndex];
 
-  let question, correctAnswer;
+  let question;
+  let correctAnswer;
 
   switch (operationType) {
     case '-':
